@@ -1,0 +1,57 @@
+{
+    "users":[
+        {
+            "parentAmount":200,
+            "Currency":"USD",
+            "parentEmail":"parent1@parent.eu",
+            "statusCode":1,
+            "registerationDate": "2018-11-30",
+            "parentIdentification": "d3d29d70-1d25-11e3-8591-034165a3a613"
+        },
+        {
+            "parentAmount":210,
+            "Currency":"EUR",
+            "parentEmail":"parent2@parent.eu",
+            "statusCode":2,
+            "registerationDate": "2018-11-10",
+            "parentIdentification": "d3d29d70-1d25-11e3-8591-034165a3a610"
+
+        },
+        {
+            "parentAmount":225,
+            "Currency":"USD",
+            "parentEmail":"parent3@parent.eu",
+            "statusCode":2,
+            "registerationDate": "2018-11-20",
+            "parentIdentification": "d3d29d70-1d25-11e3-8591-034165a3a620"
+
+        },
+        {
+            "parentAmount":1000,
+            "Currency":"EGP",
+            "parentEmail":"parent4@parent.eu",
+            "statusCode":1,
+            "registerationDate": "2018-10-20",
+            "parentIdentification": "d3d29d70-1d25-11e3-8591-034165a3a640"
+
+        },
+        {
+            "parentAmount":300.5,
+            "Currency":"AED",
+            "parentEmail":"parent5@parent.eu",
+            "statusCode":1,
+            "registerationDate": "2019-05-11",
+            "parentIdentification": "d3d29d70-1d25-11e3-8591-034165a3a300"
+
+        },
+        {
+            "parentAmount":200,
+            "Currency":"EUR",
+            "parentEmail":"parent6@parent.eu",
+            "statusCode":1,
+            "registerationDate": "2018-06-09",
+            "parentIdentification": "d3d29d70-1d25-11e3-8591-034165a3a6200"
+
+        }
+    ]
+}

@@ -1,0 +1,53 @@
+{
+    "users": [
+        {
+            "balance": 300,
+            "currency": "AED",
+            "email": "parentY1@parent.eu",
+            "status": 100,
+            "created_at": "22/12/2018",
+            "id": "4fc2-a8d1"
+        },
+        {
+            "balance": 310,
+            "currency": "USD",
+            "email": "parentY2@parent.eu",
+            "status": 100,
+            "created_at": "22/12/2018",
+            "id": "5fc3-a8d2"
+        },
+        {
+            "balance": 1000,
+            "currency":"USD",
+            "email": "parentY3@parent.eu",
+            "status": 100,
+            "created_at": "22/12/2018",
+            "id": "6fc4-a8d3"
+        },
+        {
+            "balance": 560,
+            "currency": "AED",
+            "email": "parentY4@parent.eu",
+            "status": 200,
+            "created_at": "22/12/2018",
+            "id": "7fc5-a7d4"
+        },
+        {
+            "balance": 222,
+            "currency": "USD",
+            "email": "parentY5@parent.eu",
+            "status": 300,
+            "created_at": "22/12/2018",
+            "id": "8fc6-a8d5"
+        },
+        {
+            "balance": 130,
+            "currency": "EUR",
+            "email": "parentY6@parent.eu",
+            "status": 200,
+            "created_at": "22/12/2018",
+            "id": "9fc7-a9d6"
+        }
+
+    ]
+}
