@@ -7,25 +7,29 @@ use App\Enums\ProvidesEnum;
 class UserService{
     public function getAllUsersData($request = [])
     {
-        $classPrefix = "App\\Services\\DataProviders\\";    // class namespace prefix
         $data = [];
 
         if(isset($request["provider"]))
         {
-            $fullyQualifiedClassName = $classPrefix . $request["provider"]. "Service";
-            $providerObj = new $fullyQualifiedClassName();
 
-            return $providerObj->getUsersData($request);
+            return $this->getProviderData($request["provider"], $request);
 
         }else{
             foreach (array_keys(ProvidesEnum::getConstants()) as $classPreName)
             {
-                $fullyQualifiedClassName = $classPrefix . $classPreName. "Service";
-                $providerObj = new $fullyQualifiedClassName();
-                $data[] = $providerObj->getUsersData($request);
+                $data[] = $this->getProviderData($classPreName, $request);
             }
 
             return collect($data)->flatten();
         }
+    }
+
+    private function getProviderData($provider, $request)
+    {
+        $classPrefix = "App\\Services\\DataProviders\\";    // class namespace prefix
+        $fullyQualifiedClassName = $classPrefix . $provider . "Service";
+        $providerObj = new $fullyQualifiedClassName();
+
+        return $providerObj->getUsersData($request);
     }
 }

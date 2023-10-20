@@ -19,17 +19,20 @@ abstract class DataProviderAbstract{
     {
         foreach ($request as $key=>$value)
             {
-                if($key && !empty($this->filterByKey($key)))
+                if($dataCollection)
                 {
-                    if($key == "statusCode")
+                    if($key && !empty($this->filterByKey($key)))
                     {
-                        $dataCollection = $dataCollection->where($this->filterByKey($key), $this->GetStatusValue($value));
-                    }else{
-                        $dataCollection = $dataCollection->where($this->filterByKey($key), $value);
-                    }
+                        if($key == "statusCode")
+                        {
+                            $dataCollection = $dataCollection->where($this->filterByKey($key), $this->GetStatusValue($value));
+                        }else{
+                            $dataCollection = $dataCollection->where($this->filterByKey($key), $value);
+                        }
 
-                }else{
-                    $this->balanceCustomFilter($dataCollection, $key, $value);
+                    }else{
+                        $this->balanceCustomFilter($dataCollection, $key, $value);
+                    }
                 }
             }
 
@@ -38,11 +41,11 @@ abstract class DataProviderAbstract{
 
     public function balanceCustomFilter(&$dataCollection, $filter, $value)
     {
-        if($filter == "balanceMin" && $dataCollection)
+        if($filter == "balanceMin")
         {
             $dataCollection = $dataCollection->where($this->filterByKey('balance'), '>=', $value);
         }
-        if($filter == "balanceMax" && $dataCollection)
+        if($filter == "balanceMax")
         {
             $dataCollection = $dataCollection->where($this->filterByKey('balance'), '<=', $value);
         }
