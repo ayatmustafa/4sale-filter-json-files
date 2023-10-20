@@ -2,17 +2,20 @@
 
 namespace App\Services\DataProviders;
 
+use App\Enums\FilterEnum;
+use App\Enums\ProvidesEnum;
+use App\Enums\StatusEnum;
 use App\Services\DataProviderAbstract;
 
 class DataProviderYService extends DataProviderAbstract{
-    protected $fileName = "DataProviderY.json";
+    protected $fileName = ProvidesEnum::DataProviderY;
 
     protected function filterByKey($key): string
     {
          $filter = [
-            "statusCode" => "status",
-            "currency"   => "currency",
-            "balance"    => "balance"
+            FilterEnum::StatusCode => "status",
+            FilterEnum::Currency   => "currency",
+            FilterEnum::Balance    => "balance"
         ];
 
         return $filter[$key] ?? '';
@@ -20,10 +23,11 @@ class DataProviderYService extends DataProviderAbstract{
 
     protected function GetStatusValue($status): int
     {
+
         $arrStatus = [
-               "authorised" => 100,
-               "decline"    => 200,
-               "refunded"   => 300
+               StatusEnum::Authorised => 100,
+               StatusEnum::Decline    => 200,
+               StatusEnum::Refunded   => 300
         ];
 
         return $arrStatus[$status] ?? '';
