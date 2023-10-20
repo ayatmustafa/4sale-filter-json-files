@@ -7,7 +7,7 @@ namespace App\Enums;
  *
  * @package App\Enums
  */
-class FilterEnum
+class FilterEnum extends BasicEnum
 {
     public const StatusCode = 'statusCode';
     public const Currency   = 'currency';

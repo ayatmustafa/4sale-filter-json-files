@@ -3,7 +3,6 @@
 namespace App\Services;
 
 abstract class DataProviderAbstract{
-
     abstract protected  function filterByKey($key): string;
 
     abstract protected function GetStatusValue($status): int;

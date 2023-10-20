@@ -12,6 +12,7 @@ class DataProviderXService extends DataProviderAbstract{
 
     protected function filterByKey($key): string
     {
+
          $filter = [
              FilterEnum::StatusCode => "statusCode",
              FilterEnum::Currency   => "Currency",
