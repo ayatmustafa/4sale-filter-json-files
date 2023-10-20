@@ -11,9 +11,8 @@ abstract class DataProviderAbstract{
     public function getUsersData($request = [])
     {
         $data = json_decode(file_get_contents(database_path("dataproviders/".$this->fileName)))->users;
-        $dataCollection =  collect($data);
 
-        return $this->filter($dataCollection, $request);
+        return $this->filter(collect($data), $request);
     }
 
     public function filter($dataCollection, $request)
