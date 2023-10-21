@@ -3,7 +3,7 @@
 namespace App\Enums;
 
 /**
- * Class StatusEnum
+ * Class FilterEnum
  *
  * @package App\Enums
  */

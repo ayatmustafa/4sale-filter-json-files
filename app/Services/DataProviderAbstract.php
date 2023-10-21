@@ -34,12 +34,9 @@ abstract class DataProviderAbstract{
     {
         foreach ($request as $key=>$value)
             {
-                if($dataCollection)
-                {
-                    if($key && !empty($this->filterByKey($key)))
-                    {
-                        if($key == FilterEnum::StatusCode)
-                        {
+                if($dataCollection) {
+                    if($key && !empty($this->filterByKey($key))) {
+                        if($key == FilterEnum::StatusCode) {
                             $dataCollection = $dataCollection->where($this->filterByKey($key), $this->GetStatusValue($value));
                         }else{
                             $dataCollection = $dataCollection->where($this->filterByKey($key), $value);
@@ -56,12 +53,10 @@ abstract class DataProviderAbstract{
 
     public function balanceCustomFilter(&$dataCollection, $filter, $value)
     {
-        if($filter == "balanceMin")
-        {
+        if($filter == "balanceMin") {
             $dataCollection = $dataCollection->where($this->filterByKey('balance'), '>=', $value);
         }
-        if($filter == "balanceMax")
-        {
+        if($filter == "balanceMax") {
             $dataCollection = $dataCollection->where($this->filterByKey('balance'), '<=', $value);
         }
     }

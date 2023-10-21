@@ -8,7 +8,7 @@ use App\Services\DataProviderAbstract;
 
 class DataProviderYService extends DataProviderAbstract{
 
-    protected function filterByKey($key): string
+    public function filterByKey($key): string
     {
          $filter = [
             FilterEnum::StatusCode => "status",
