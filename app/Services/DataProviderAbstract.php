@@ -13,12 +13,12 @@ abstract class DataProviderAbstract{
 
     abstract protected function GetStatusValue($status): int;
 
-    public function getFileName():string
+    public function getFileName(): string
     {
         return $this->fileName;
     }
 
-    public function setFileName($provider):void
+    public function setFileName($provider): void
     {
         $this->fileName = constant(get_class(new ProvidesEnum()) . "::" . $provider);
     }

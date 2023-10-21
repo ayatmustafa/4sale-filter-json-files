@@ -11,9 +11,7 @@ class UserService{
 
         if(isset($request["provider"]))
         {
-
             return $this->getProviderData($request["provider"], $request);
-
         }else{
             foreach (array_keys(ProvidesEnum::getConstants()) as $classPreName)
             {
