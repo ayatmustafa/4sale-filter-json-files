@@ -15,8 +15,9 @@ class UserController extends BaseController
         $users = resolve(UserService::class)->getAllUsersData($request->validated());
 
         return response()->json([
-            'status' => true,
-            'data' => $users,
+            'Status' => true,
+            'Count'  => $users->count(),
+            'Data'   => $users,
         ], 200);
     }
 }

@@ -3,12 +3,10 @@
 namespace App\Services\DataProviders;
 
 use App\Enums\FilterEnum;
-use App\Enums\ProvidesEnum;
 use App\Enums\StatusEnum;
 use App\Services\DataProviderAbstract;
 
 class DataProviderXService extends DataProviderAbstract{
-    protected $fileName = ProvidesEnum::DataProviderX;
 
     protected function filterByKey($key): string
     {

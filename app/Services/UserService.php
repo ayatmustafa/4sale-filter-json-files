@@ -29,6 +29,7 @@ class UserService{
         $classPrefix = "App\\Services\\DataProviders\\";    // class namespace prefix
         $fullyQualifiedClassName = $classPrefix . $provider . "Service";
         $providerObj = new $fullyQualifiedClassName();
+        $providerObj->setFileName($provider);
 
         return $providerObj->getUsersData($request);
     }

@@ -2,15 +2,29 @@
 
 namespace App\Services;
 
+use App\Enums\ProvidesEnum;
+
 abstract class DataProviderAbstract{
+
+    private $fileName;
+
     abstract protected  function filterByKey($key): string;
 
     abstract protected function GetStatusValue($status): int;
 
-
-    public function getUsersData($request = [])
+    public function getFileName():string
     {
-        $data = json_decode(file_get_contents(database_path("dataproviders/".$this->fileName)))->users;
+        return $this->fileName;
+    }
+
+    public function setFileName($provider):void
+    {
+        $this->fileName = constant(get_class(new ProvidesEnum()) . "::" . $provider);
+    }
+
+    public function getUsersData($request)
+    {
+        $data = json_decode(file_get_contents(database_path("dataproviders/".$this->getFileName())))->users;
 
         return $this->filter(collect($data), $request);
     }
