@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Enums\FilterEnum;
 use App\Enums\ProvidesEnum;
 
 abstract class DataProviderAbstract{
@@ -24,7 +25,7 @@ abstract class DataProviderAbstract{
 
     public function getUsersData($request)
     {
-        $data = json_decode(file_get_contents(database_path("dataproviders/".$this->getFileName())))->users;
+        $data = json_decode(file_get_contents(database_path("dataProviders/" . $this->getFileName())))->users;
 
         return $this->filter(collect($data), $request);
     }
@@ -37,7 +38,7 @@ abstract class DataProviderAbstract{
                 {
                     if($key && !empty($this->filterByKey($key)))
                     {
-                        if($key == "statusCode")
+                        if($key == FilterEnum::StatusCode)
                         {
                             $dataCollection = $dataCollection->where($this->filterByKey($key), $this->GetStatusValue($value));
                         }else{
