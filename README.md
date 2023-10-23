@@ -1,66 +1,104 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# About The Task
 
-## About Laravel
+We have two providers collect data from them in json files we need to read and make some filter operations on them to get the result
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- DataProviderX data is stored in [DataProviderX.json].
+- DataProviderY data is stored in [DataProviderY.json].
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+**DataProviderX schema is**
+```json
+ { 
+    parentAmount:200,
+    Currency:'USD', 
+    parentEmail:'parent1@parent.eu', 
+    statusCode:1, 
+    registerationDate: '2018-11-30', 
+    parentIdentification: 'd3d29d70-1d25-11e3-8591-034165a3a613' 
+}
+```
+ we have three status for DataProviderX 
+*   authorised which will have statusCode 1 
+*   decline which will have statusCode 2 
+*   refunded which will have statusCode 3
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+**DataProviderY schema is**
+```json
+ { 
+    balance:300, 
+    currency:'AED', 
+    email:'parent2@parent.eu', 
+    status:100, created_at: '22/12/2018', 
+    id: '4fc2-a8d1' 
+}
+```
 
-## Learning Laravel
+we have three status for DataProviderY
+*  authorised which will have statusCode 100
+*  decline which will have statusCode 200
+*  refunded which will have statusCode 300
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+# **Acceptance Criteria**
+Using PHP Laravel, implement this API endpoint
+* it should list all users which combine transactions from all the available
+  (providerDataProviderX and DataProviderY )
+* it should be able to filter result by payment providers for example /api/
+v1/users?provider=DataProviderX it should return users from
+DataProviderX
+* it should be able to filter result three statusCode
+(authorised, decline, refunded) for example /api/v1/users?
+statusCode=authorised it should return all users from all providers that
+have status code authorised
+* it should be able to filer by amount range for example /api/v1/users?
+balanceMin=10&balanceMax=100 it should return result between 10 and
+100 including 10 and 100
+* it should be able to filer by currency
+* it should be able to combine all this filter together
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## The Evaluation
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Task will be evaluated based on
+1. Code quality
+2. Application performance in reading large files
+3. Code scalability : ability to add DataProviderZ by small changes
+4. Unit tests coverage
+5. Docker
 
-## Laravel Sponsors
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+# Technical Points
 
-### Premium Partners
+### 1. Postman Collection
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+https://schoolia.postman.co/workspace/sulfah~06f0767a-1bd1-489a-a1e4-f3f24b3b3235/collection/9536988-7d9ce391-9654-4e39-819b-f0d477dd6746?action=share&creator=9536988&active-environment=9536988-2556e64a-1cf9-4f61-a394-2f47b139c765
 
-## Contributing
+### 2. How to add any other data provider (DataProviderZ)
+1. add json file for this provider in storage/dataProviders
+2. add it's name.json in ProvidesEnum
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+#### ex :
 
-## Code of Conduct
+public const DataProviderZ = "DataProviderZ.json";
+constant DataProviderZ Should be the file name DataProviderZ and should be without any spaces
+3. add service  like DataProviderYService which added in namespace App\Services\DataProviders 
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+#### ex :
+for DataProviderZService it should named with the name of jsonFile and add extend from DataProviderAbstract
 
-## Security Vulnerabilities
+##### and implement in it the **two abstract functions**
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+* #####   1. filterByKey:
+which have all fields that in the json file and mapping it into request enumerator
+* #####   2. GetStatusValue:
+which have all needed status and it's code in current provider 
 
-## License
+### 3. What We Need to Run The Task
+we need to have php8 <
+and have docker engin
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### 3. How to Run The Task
+* Clone the project
+* cd **projectName**
+* ./vendor/bin/sail up
+
+
+
