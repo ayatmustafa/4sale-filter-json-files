@@ -97,6 +97,8 @@ and have docker engin
 ### 4. How to Run The Task
 * Clone the project
 * cd **projectName**
+* composer install
+* php artisan key:generate
 * ./vendor/bin/sail up
 
 
