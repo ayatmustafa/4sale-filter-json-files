@@ -94,7 +94,7 @@ which have all needed status and it's code in current provider
 we need to have php8 <
 and have docker engin
 
-### 3. How to Run The Task
+### 4. How to Run The Task
 * Clone the project
 * cd **projectName**
 * ./vendor/bin/sail up
