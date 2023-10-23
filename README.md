@@ -68,9 +68,7 @@ Task will be evaluated based on
 # Technical Points
 
 ### 1. Postman Collection
-
-https://schoolia.postman.co/workspace/sulfah~06f0767a-1bd1-489a-a1e4-f3f24b3b3235/collection/9536988-7d9ce391-9654-4e39-819b-f0d477dd6746?action=share&creator=9536988&active-environment=9536988-2556e64a-1cf9-4f61-a394-2f47b139c765
-
+https://api.postman.com/collections/9536988-7d9ce391-9654-4e39-819b-f0d477dd6746?access_key=PMAT-01HDF3DZRPBMER88A12FADJRG2
 ### 2. How to add any other data provider (DataProviderZ)
 1. add json file for this provider in storage/dataProviders
 2. add it's name.json in ProvidesEnum
