@@ -7,19 +7,20 @@ use App\Enums\ProvidesEnum;
 
 class DataProviderService{
 
-    private $providerObj;
+    private $providerObj, $provider;
     public function getAllUsersData($request = [])
     {
         $data = [];
 
         if(isset($request["provider"])) {
-            return $this->mappingData($this->getProviderData($request["provider"], $request));
+            return $this->dataMapper($this->getProviderData($request["provider"], $request));
         }else{
             foreach (array_keys(ProvidesEnum::getConstants()) as $classPreName)
             {
                 $users  = $this->getProviderData($classPreName, $request);
-                $data[] = $this->mappingData($users);
+                $data[] = $this->dataMapper($users);
             }
+
             return  collect($data)->flatten(1);
         }
     }
@@ -28,6 +29,7 @@ class DataProviderService{
     private function getProviderData($provider, $request)
     {
         $classPrefix = "App\\Services\\DataProviders\\";    // class namespace prefix
+        $this->provider = $provider;
         $fullyQualifiedClassName = $classPrefix . $provider . "Service";
         $this->providerObj = new $fullyQualifiedClassName();
         $this->providerObj->setFileName($provider);
@@ -36,7 +38,7 @@ class DataProviderService{
     }
 
     //mapping data as common filter for it's own fields and unset what it's refer from it's own
-    private function mappingData($users)
+    private function dataMapper($users)
     {
         return $users->map(function ($item) {
 
@@ -44,13 +46,14 @@ class DataProviderService{
             {
                 $filed = $this->providerObj->filterByKey($filter);
                 $item = (array) $item;
-                $item[$key] = $item[$filed] ?? "";
-                unset($item[$filed] );
+                $item[$this->provider]['Provider'] = $this->provider;
+                $item[$this->provider][$key] = $item[$filed];
+                unset($item[$filed]);
             }
 
-            return $item;
-        }
-        );
+            return $item[$this->provider];
+
+        });
     }
 
 }

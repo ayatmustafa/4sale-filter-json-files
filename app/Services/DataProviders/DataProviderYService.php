@@ -13,7 +13,10 @@ class DataProviderYService extends DataProviderAbstract{
          $filter = [
             FilterEnum::StatusCode => "status",
             FilterEnum::Currency   => "currency",
-            FilterEnum::Balance    => "balance"
+            FilterEnum::Balance    => "balance",
+            FilterEnum::Email      => "email",
+            FilterEnum::CreatedAt  => "created_at",
+            FilterEnum::Id         => "id"
         ];
 
         return $filter[$key] ?? '';

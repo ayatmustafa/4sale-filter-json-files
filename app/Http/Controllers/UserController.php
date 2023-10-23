@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
+use App\Http\Resources\UserResource;
 use App\Services\DataProviders\DataProviderXService;
 use App\Services\DataProviderService;
 use Illuminate\Http\Request;
