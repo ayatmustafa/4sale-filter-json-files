@@ -25,7 +25,7 @@ abstract class DataProviderAbstract{
 
     public function getUsersData($request)
     {
-        $data = json_decode(file_get_contents(database_path("dataProviders/" . $this->getFileName())))->users;
+        $data = json_decode(file_get_contents(storage_path("dataProviders/" . $this->getFileName())))->users;
 
         return $this->filter(collect($data), $request);
     }
