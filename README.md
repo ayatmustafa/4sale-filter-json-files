@@ -95,10 +95,10 @@ we need to have php8 <
 and have docker engin
 
 ### 4. How to Run The Task
-* Clone the project
-* cd **projectName**
-* composer install
-* php artisan key:generate
+*         Clone the project
+*         cd **projectName**
+*         composer install
+*         php artisan key:generate
 * alias sail='bash vendor/bin/sail'
 * sail up
 * sail artisan test 
