@@ -99,7 +99,8 @@ and have docker engin
 * cd **projectName**
 * composer install
 * php artisan key:generate
-* ./vendor/bin/sail up
+* alias sail='bash vendor/bin/sail'
+* sail up
 * sail artisan test 
 
 
