@@ -7,7 +7,8 @@ use App\Enums\ProvidesEnum;
 
 abstract class DataProviderAbstract{
 
-    private $fileName;
+    private string $fileName;
+    private string $storageDataPath;
 
     abstract protected  function filterByKey($key): string;
 
@@ -23,9 +24,19 @@ abstract class DataProviderAbstract{
         $this->fileName = constant(get_class(new ProvidesEnum()) . "::" . $provider);
     }
 
+    public function getStorageDataPath(): string
+    {
+        return $this->storageDataPath ?? "dataProviders/";
+    }
+
+    public function setStorageDataPath($env): void
+    {
+         $this->storageDataPath = ( $env == "testing" ? "dataProviders/tests/" : "dataProviders/" );
+    }
+
     public function getUsersData($request)
     {
-        $data = json_decode(file_get_contents(storage_path("dataProviders/" . $this->getFileName())))->users;
+        $data = json_decode(file_get_contents(storage_path($this->getStorageDataPath() . $this->getFileName())))->users;
 
         return $this->filter(collect($data), $request);
     }

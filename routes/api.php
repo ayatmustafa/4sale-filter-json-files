@@ -13,4 +13,5 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-Route::get('v1/users', [\App\Http\Controllers\UserController::class, 'index']);
+Route::get('v1/users/{env?}', [\App\Http\Controllers\UserController::class, 'index'])
+    ->where('env', '[A-Za-z]+');
