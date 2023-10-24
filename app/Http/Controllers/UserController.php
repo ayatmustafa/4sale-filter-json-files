@@ -11,9 +11,11 @@ use Illuminate\Routing\Controller as BaseController;
 
 class UserController extends BaseController
 {
-    public function index(UserRequest $request)
+    public function index(UserRequest $request, $env = "development")
     {
-        $users = resolve(DataProviderService::class)->getAllUsersData($request->validated());
+        $service = new DataProviderService();
+        $service->setEnv($env);
+        $users = $service->getAllUsersData($request->validated());
 
         return response()->json([
             'Status' => true,

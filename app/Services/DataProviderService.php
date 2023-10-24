@@ -8,6 +8,18 @@ use App\Enums\ProvidesEnum;
 class DataProviderService{
 
     private $providerObj, $provider;
+    private string $env ;
+
+    public function getEnv(): string
+    {
+        return $this->env;
+    }
+
+    public function setEnv($env): void
+    {
+        $this->env = $env;
+    }
+
     public function getAllUsersData($request = [])
     {
         $data = [];
@@ -33,6 +45,7 @@ class DataProviderService{
         $fullyQualifiedClassName = $classPrefix . $provider . "Service";
         $this->providerObj = new $fullyQualifiedClassName();
         $this->providerObj->setFileName($provider);
+        $this->providerObj->setStorageDataPath($this->getEnv());
 
         return $this->providerObj->getUsersData($request);
     }
