@@ -100,6 +100,7 @@ and have docker engin
 * composer install
 * php artisan key:generate
 * ./vendor/bin/sail up
+* sail artisan test 
 
 
 
