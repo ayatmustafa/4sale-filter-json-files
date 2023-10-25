@@ -85,23 +85,23 @@ https://api.postman.com/collections/9536988-7d9ce391-9654-4e39-819b-f0d477dd6746
 
 ##### and implement in it the **two abstract functions**
 
-* #####   1. filterByKey:
-which have all fields that in the json file and mapping it into request enumerator
-* #####   2. GetStatusValue:
-which have all needed status and it's code in current provider 
+* #####       1. filterByKey:
+              which have all fields that in the json file and mapping it into request enumerator
+* #####       2. GetStatusValue:
+             which have all needed status and it's code in current provider 
 
 ### 3. What We Need to Run The Task
 we need to have php8 <
 and have docker engin
 
 ### 4. How to Run The Task
-* Clone the project
-* cd **projectName**
-* composer install
-* php artisan key:generate
-* alias sail='bash vendor/bin/sail'
-* sail up
-* sail artisan test 
+*         Clone the project
+*         cd **projectName**
+*         composer install
+*         php artisan key:generate
+*         alias sail='bash vendor/bin/sail'
+*         sail up
+*         sail artisan test 
 
 
 
