@@ -68,8 +68,10 @@ Task will be evaluated based on
 # Technical Points
 
 ### 1. Postman Collection
-you can import postman collection
-https://api.postman.com/collections/9536988-7d9ce391-9654-4e39-819b-f0d477dd6746?access_key=PMAT-01HDF3DZRPBMER88A12FADJRG2
+you can import postman Documentation
+
+        https://documenter.getpostman.com/view/9536988/2s9YRCXXNV
+
 ### 2. How to add any other data provider (DataProviderZ)
 1. add json file for this provider in storage/dataProviders
 2. add it's name.json in ProvidesEnum
