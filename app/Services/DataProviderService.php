@@ -25,7 +25,8 @@ class DataProviderService{
         $data = [];
 
         if(isset($request["provider"])) {
-            return $this->dataMapper($this->getProviderData($request["provider"], $request));
+
+            return paginate($this->dataMapper($this->getProviderData($request["provider"], $request)), config('app.numberOfItemsPerPage'));
         }else{
             foreach (array_keys(ProvidesEnum::getConstants()) as $classPreName)
             {
@@ -33,7 +34,7 @@ class DataProviderService{
                 $data[] = $this->dataMapper($users);
             }
 
-            return  collect($data)->flatten(1);
+            return  paginate(collect($data)->flatten(1),  config('app.numberOfItemsPerPage'));
         }
     }
 

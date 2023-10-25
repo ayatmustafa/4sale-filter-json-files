@@ -19,7 +19,6 @@ class UserController extends BaseController
 
         return response()->json([
             'Status' => true,
-            'Count'  => $users->count(),
             'Data'   => $users,
         ], 200);
     }
