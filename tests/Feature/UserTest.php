@@ -17,9 +17,12 @@ class UserTest extends TestCase
             ->assertOk()
             ->assertJsonStructure([
                 "Status",
-                "Count" ,
                 "Data" => [
-                    '*' => ['Id', 'Email', 'Currency', 'Balance', 'StatusCode', 'CreatedAt']
+                    "current_page",
+                    "data" => [
+                        '*' => ['Id', 'Email', 'Currency', 'Balance', 'StatusCode', 'CreatedAt']
+                    ]
+
                 ],
             ]);
     }
@@ -30,13 +33,20 @@ class UserTest extends TestCase
 
         $response->assertStatus(200)
             ->assertOk()
-            ->assertJsonStructure([
-                "Status",
-                "Count" ,
-                "Data" => [
-                    '*' => ['Id', 'Email', 'Currency', 'Balance', 'StatusCode', 'CreatedAt']
-                ],
-            ]);
+            ->assertJsonStructure(
+                [
+                        "Status",
+                        "Data" => [
+                            "current_page",
+                            "data" => [
+                                '*' => ['Id', 'Email', 'Currency', 'Balance', 'StatusCode', 'CreatedAt']
+                            ]
+
+                        ],
+                    ]
+            );
+
+
     }
 
     public function test_get_users_from_specific_providers_with_statusCode_filtration_with_empty_a_successful_response(): void
@@ -45,16 +55,12 @@ class UserTest extends TestCase
 
         $response->assertStatus(200)
             ->assertOk()
-            ->assertJsonStructure([
-                "Status",
-                "Count",
-                "Data" => [
-                    '*' => ['Id', 'Email', 'Currency', 'Balance', 'StatusCode', 'CreatedAt']
+            ->assertJson([
+                "Status" => true,
+                "Data"   => [
+                    "total"=> 0
                 ],
-            ])->assertJson([
-            "Status" => true,
-            "Count" => 0,
-        ]);
+            ]);
     }
 
     public function test_get_users_from_specific_providers_with_max_balance_filtration_with_a_successful_response(): void
@@ -63,13 +69,19 @@ class UserTest extends TestCase
 
         $response->assertStatus(200)
             ->assertOk()
-            ->assertJsonStructure([
-                "Status",
-                "Count",
-                "Data" => [
-                    '*' => ['Id', 'Email', 'Currency', 'Balance', 'StatusCode', 'CreatedAt']
-                ],
-            ]);
+            ->assertJsonStructure(
+                [
+                    "Status",
+                    "Data" => [
+                        "current_page",
+                        "data" => [
+                            '*' => ['Id', 'Email', 'Currency', 'Balance', 'StatusCode', 'CreatedAt']
+                        ]
+
+                    ],
+                ]
+            );
+
     }
 
 }
